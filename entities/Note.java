@@ -7,23 +7,23 @@ public class Note {
 	
 	public static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
-	private String status;
+	private char status;
 	private String body;
 	private String observation;
 	private Date hour;
 	
-	public Note(String status, String body, String observation) {
+	public Note(char status, String body, String observation) {
 		this.status = status;
 		this.body = body;
 		this.observation = observation;
 		this.hour = new Date();
 	}
 
-	public String getStatus() {
+	public char getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(char status) {
 		this.status = status;
 	}
 
