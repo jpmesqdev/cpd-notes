@@ -23,7 +23,7 @@ public class UI {
 		
 		System.out.println("Bom dia/tarde/noite - " + sdf.format(new Date()));
 		System.out.println();
-		System.out.println("------ Lista do que já foi feito hoje (" + sdf.format(new Date()) + ") ------");
+		System.out.println("------------------- Lista do que já foi feito hoje (" + sdf.format(new Date()) + ") ---------------------------------------------------------------");
 		System.out.println();
 		
 		try {
@@ -39,6 +39,15 @@ public class UI {
 			sc.close();
 		}
 		
+		System.out.println();
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+	
+		System.out.println("Legenda:");
+		System.out.println("(S) = Solucionado ");
+		System.out.println("(P) = Pendente ");
+		System.out.println("(I) = Informacional ");
+		
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
 		System.out.println();
 		
 		System.out.println("Escolha uma opção: ");
