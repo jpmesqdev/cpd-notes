@@ -1,8 +1,11 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Note {
+	
+	public static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
 	private String status;
 	private String body;
@@ -13,6 +16,7 @@ public class Note {
 		this.status = status;
 		this.body = body;
 		this.observation = observation;
+		this.hour = new Date();
 	}
 
 	public String getStatus() {
@@ -46,6 +50,10 @@ public class Note {
 	public void setHour(Date hour) {
 		this.hour = hour;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "(" + status + ") " + body + " (" + sdf.format(hour) + ")";
+	}
 	
 }
