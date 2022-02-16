@@ -1,13 +1,12 @@
 package view;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -34,8 +33,11 @@ public class UI {
 				System.out.println("                        Nenhum procedimento foi feito ainda");
 			}
 			
+			int n = 1;
 			while (sc.hasNext()) {
-				System.out.println(sc.nextLine());				
+				
+				System.out.println(n + ". " + sc.nextLine());
+				n++;
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -81,10 +83,11 @@ public class UI {
 				
 				Note note = new Note(status, txt, "");
 				
-				FileWriter filew = new FileWriter("src\\procedimento-" + sdf.format(new Date()) +".txt");
-				
-				filew.write(note.toString());
-				filew.close();
+				FileWriter filew = new FileWriter("src\\procedimento-" + sdf.format(new Date()) +".txt", true);
+				BufferedWriter bf = new BufferedWriter(filew);
+				filew.append(note.toString());
+				bf.newLine();
+				bf.close();
 				
 			}
 			
