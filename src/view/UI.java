@@ -2,6 +2,8 @@ package view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,28 +15,31 @@ import entities.Note;
 
 public class UI {
 	
-	public static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	public static final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	
 	public static void mainScreen() {
 		
 		Locale.setDefault(Locale.US);
 		Scanner sc = null;
-		List<Note> list = new ArrayList<>();
 		
-		System.out.println("Bom dia/tarde/noite - " + sdf.format(new Date()));
+		System.out.println("                          Bom dia/tarde/noite - " + sdf.format(new Date()));
 		System.out.println();
 		System.out.println("------------------- Lista do que já foi feito hoje (" + sdf.format(new Date()) + ") ---------------------------------------------------------------");
 		System.out.println();
 		
 		try {
-			sc = new Scanner(new File("C:\\Users\\joao305904\\Downloads\\Eclipse-default-workspace\\CPD-Notes\\file.txt"));
+			sc = new Scanner(new File("src\\procedimento-" + sdf.format(new Date()) +".txt"));
 
+			if (!sc.hasNext()) {
+				System.out.println("                        Nenhum procedimento foi feito ainda");
+			}
+			
 			while (sc.hasNext()) {
 				System.out.println(sc.nextLine());				
 			}
-		} catch (FileNotFoundException e1) {
-			System.out.println("Erro: Arquivo de leitura não encontrado!");
-			e1.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			sc.close();
 		}
@@ -75,11 +80,17 @@ public class UI {
 				String txt = sc.nextLine();
 				
 				Note note = new Note(status, txt, "");
-				list.add(note);	
 				
-				UI.mainScreen();
+				FileWriter filew = new FileWriter("src\\procedimento-" + sdf.format(new Date()) +".txt");
+				
+				filew.write(note.toString());
+				filew.close();
+				
 			}
 			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (sc != null) {
 				sc.close();
