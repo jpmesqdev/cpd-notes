@@ -1,5 +1,7 @@
 package view;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,14 +26,17 @@ public class UI {
 		System.out.println("------ Lista do que já foi feito hoje (" + sdf.format(new Date()) + ") ------");
 		System.out.println();
 		
-		if (list.size() != 0) {
-			for(int i = 0; i < list.size(); i++) {
-				System.out.println((i +1) + ". " + list.get(i).toString());
-			}			
-		} else {
-			System.out.println("      Nenhum procedimento feito ainda");
-			System.out.println();
-			System.out.println("-----------------------------------------------------");
+		try {
+			sc = new Scanner(new File("C:\\Users\\joao305904\\Downloads\\Eclipse-default-workspace\\CPD-Notes\\file.txt"));
+
+			while (sc.hasNext()) {
+				System.out.println(sc.nextLine());				
+			}
+		} catch (FileNotFoundException e1) {
+			System.out.println("Erro: Arquivo de leitura não encontrado!");
+			e1.printStackTrace();
+		} finally {
+			sc.close();
 		}
 		
 		System.out.println();
@@ -61,13 +66,11 @@ public class UI {
 				String txt = sc.nextLine();
 				
 				Note note = new Note(status, txt, "");
-				list.add(note);
+				list.add(note);	
 				
 				UI.mainScreen();
 			}
 			
-		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
 		} finally {
 			if (sc != null) {
 				sc.close();
