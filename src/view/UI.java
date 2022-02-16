@@ -40,7 +40,7 @@ public class UI {
 				n++;
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("O arquivo não foi encontrado na pasta");
 			e.printStackTrace();
 		} finally {
 			sc.close();
@@ -89,10 +89,12 @@ public class UI {
 				bf.newLine();
 				bf.close();
 				
+				UI.mainScreen();
+				
 			}
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Não foi possível escrever no arquivo!");
 			e.printStackTrace();
 		} finally {
 			if (sc != null) {
