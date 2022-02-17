@@ -19,31 +19,46 @@ public class UI {
 	public static void mainScreen() {
 		
 		Locale.setDefault(Locale.US);
-		Scanner sc = null;
 		
 		System.out.println("                          Bom dia/tarde/noite - " + sdf.format(new Date()));
 		System.out.println();
 		System.out.println("------------------- Lista do que já foi feito hoje (" + sdf.format(new Date()) + ") ---------------------------------------------------------------");
 		System.out.println();
 		
-		try {
-			sc = new Scanner(new File("src\\procedimento-" + sdf.format(new Date()) +".txt"));
-
-			if (!sc.hasNext()) {
+		File path = new File("procedimento-" + sdf.format(new Date()) +".txt");
+		
+		Scanner sc = null;
+		
+		try (Scanner sc1 = new Scanner(path)) {
+			
+			if (!sc1.hasNext()) {
 				System.out.println("                        Nenhum procedimento foi feito ainda");
 			}
 			
 			int n = 1;
-			while (sc.hasNext()) {
+			while (sc1.hasNext()) {
 				
-				System.out.println(n + ". " + sc.nextLine());
+				System.out.println(n + ". " + sc1.nextLine());
 				n++;
 			}
+			
 		} catch (FileNotFoundException e) {
+			
 			System.out.println("O arquivo não foi encontrado na pasta");
-			e.printStackTrace();
-		} finally {
-			sc.close();
+
+			try {
+				FileWriter filew = new FileWriter("procedimento-" + sdf.format(new Date()) +".txt", true);
+				BufferedWriter bf = new BufferedWriter(filew);
+				bf.close();
+				
+				System.out.println("O arquivo de hoje foi criado com sucesso!");
+				
+				UI.mainScreen();
+				
+			} catch (Exception e1) {
+				System.out.println(e1.getMessage());
+			}
+			
 		}
 		
 		System.out.println();
@@ -83,7 +98,7 @@ public class UI {
 				
 				Note note = new Note(status, txt, "");
 				
-				FileWriter filew = new FileWriter("src\\procedimento-" + sdf.format(new Date()) +".txt", true);
+				FileWriter filew = new FileWriter("procedimento-" + sdf.format(new Date()) +".txt", true);
 				BufferedWriter bf = new BufferedWriter(filew);
 				filew.append(note.toString());
 				bf.newLine();

@@ -1,4 +1,0 @@
-(P) Chamado para tanca (20:18)
-(S) Altera (20:19)
-(P) Chamado para alteração de perfil (20:26)
-(S) Caixa empresa reiniciado (20:26)
