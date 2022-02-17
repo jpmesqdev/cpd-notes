@@ -20,9 +20,10 @@ public class UI {
 		
 		Locale.setDefault(Locale.US);
 		
-		System.out.println("                          Bom dia/tarde/noite - " + sdf.format(new Date()));
 		System.out.println();
-		System.out.println("------------------- Lista do que já foi feito hoje (" + sdf.format(new Date()) + ") ---------------------------------------------------------------");
+		System.out.println("                                          Bom dia/tarde/noite - " + sdf.format(new Date()));
+		System.out.println();
+		System.out.println("----------------------------------- Lista do que ja foi feito hoje (" + sdf.format(new Date()) + ") ----------------------------------------");
 		System.out.println();
 		
 		File path = new File("procedimento-" + sdf.format(new Date()) +".txt");
@@ -32,7 +33,8 @@ public class UI {
 		try (Scanner sc1 = new Scanner(path)) {
 			
 			if (!sc1.hasNext()) {
-				System.out.println("                        Nenhum procedimento foi feito ainda");
+				System.out.println("                                        Nenhum procedimento foi feito ainda");
+				System.out.println();
 			}
 			
 			int n = 1;
@@ -62,20 +64,28 @@ public class UI {
 		}
 		
 		System.out.println();
-		System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("------------------------------------------------------------------------------------------------------------------------");
 	
 		System.out.println("Legenda:");
+		
+		System.out.println();
+		
 		System.out.println("(S) = Solucionado ");
 		System.out.println("(P) = Pendente ");
 		System.out.println("(I) = Informacional ");
 		
-		System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println();
+		System.out.println("------------------------------------------------------------------------------------------------------------------------");
 		System.out.println();
 		
-		System.out.println("Escolha uma opção: ");
+		System.out.println("Escolha uma opcao: ");
+		System.out.println();
+		
 		System.out.println("(A) -> adicionar novo procedimento");
 		System.out.println("(Q) -> sair");
-		System.out.print("Opção: ");
+		
+		System.out.println();
+		System.out.print("Opcao: ");
 		
 		try {
 			sc = new Scanner(System.in);
