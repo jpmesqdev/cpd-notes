@@ -91,15 +91,15 @@ public class UI {
 		try {
 			sc = new Scanner(System.in);
 			char choice = sc.next().charAt(0);
-			if (choice == 'A') {
+			if (choice == 'A' || choice == 'a') {
 				
 				System.out.println("----- novo procedimento feito: -----");
 
-				System.out.print("Qual o status do procedimento? S/P (Solucionado/Pendente): ");
+				System.out.print("Qual o status do procedimento? S/P/I (Solucionado/Pendente/Informacional): ");
 				char status = sc.next().charAt(0);
 	
-				while (status != 'S' && status != 'P') {
-					System.out.print("Digite S ou P: ");
+				while (status != 'S' && status != 'P' && status != 'I' && status != 's' && status != 'p' && status != 'i') {
+					System.out.print("Digite S, P ou I: ");
 					status = sc.next().charAt(0);
 				}
 				
