@@ -11,6 +11,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import entities.Note;
+import util.WelcomeMessage;
 
 public class UI {
 	
@@ -19,9 +20,9 @@ public class UI {
 	public static void mainScreen() {
 		
 		Locale.setDefault(Locale.US);
-		
+	
 		System.out.println();
-		System.out.println("                                          Bom dia/tarde/noite - " + sdf.format(new Date()));
+		System.out.println("                                          " + WelcomeMessage.getMessage() + " - " + sdf.format(new Date()));
 		System.out.println();
 		System.out.println("----------------------------------- Lista do que ja foi feito hoje (" + sdf.format(new Date()) + ") ----------------------------------------");
 		System.out.println();
